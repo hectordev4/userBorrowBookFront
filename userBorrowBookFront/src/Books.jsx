@@ -14,6 +14,7 @@ import {
 const Books = () => {
   const [books, setBooks] = useState([]);
 
+  // Fetch all books
   const fetchBooks = async () => {
     try {
       const response = await axios.get("http://localhost:8080/api/v1/books");
@@ -23,6 +24,18 @@ const Books = () => {
     }
   };
 
+  // Delete a book by ID
+  const deleteBook = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/v1/books/${id}`);
+      // Update the state to remove the deleted book
+      setBooks(books.filter((book) => book.id !== id));
+    } catch (error) {
+      console.error("Error deleting book:", error);
+    }
+  };
+
+  // Fetch books on component mount
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -45,10 +58,11 @@ const Books = () => {
               <TableCell>{book.author}</TableCell>
               <TableCell>{book.isbn}</TableCell>
               <TableCell>
-                {/* Add Edit/Delete functionality here */}
+                {/* Add Edit/Delete/Update functionality here */}
                 <Button color="primary">Edit</Button>
-                <Button color="secondary">Delete</Button>
-                <Button color="ter">Update</Button>
+                <Button color="secondary" onClick={() => deleteBook(book.id)}>
+                  Delete
+                </Button>
               </TableCell>
             </TableRow>
           ))}
