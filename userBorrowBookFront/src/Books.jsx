@@ -10,9 +10,11 @@ import {
   Paper,
   Button,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
+  const navigate = useNavigate(); // React Router hook for navigation
 
   // Fetch all books
   const fetchBooks = async () => {
@@ -33,6 +35,11 @@ const Books = () => {
     } catch (error) {
       console.error("Error deleting book:", error);
     }
+  };
+
+  // Redirect to update form
+  const updateBook = (book) => {
+    navigate(`/books/update/${book.id}`, { state: { book } });
   };
 
   // Fetch books on component mount
@@ -59,7 +66,9 @@ const Books = () => {
               <TableCell>{book.isbn}</TableCell>
               <TableCell>
                 {/* Add Edit/Delete/Update functionality here */}
-                <Button color="primary">Edit</Button>
+                <Button color="primary" onClick={() => updateBook(book)}>
+                  Update
+                </Button>
                 <Button color="secondary" onClick={() => deleteBook(book.id)}>
                   Delete
                 </Button>
