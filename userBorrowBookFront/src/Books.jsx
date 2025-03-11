@@ -16,7 +16,7 @@ const Books = () => {
 
   const fetchBooks = async () => {
     try {
-      const response = await axios.get("/books");
+      const response = await axios.get("http://localhost:8080/api/v1/books");
       setBooks(response.data);
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -48,6 +48,7 @@ const Books = () => {
                 {/* Add Edit/Delete functionality here */}
                 <Button color="primary">Edit</Button>
                 <Button color="secondary">Delete</Button>
+                <Button color="ter">Update</Button>
               </TableCell>
             </TableRow>
           ))}
