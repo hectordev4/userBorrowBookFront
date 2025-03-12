@@ -6,6 +6,7 @@ import Books from "./Books";
 import Users from "./Users";
 import Borrows from "./Borrows";
 import UpdateBookForm from "./UpdateBookForm";
+import CreateBookForm from "./CreateBookForm";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
             <Route path="/users" element={<Users />} />
             <Route path="/borrows" element={<Borrows />} />
             <Route path="/books/update/:id" element={<UpdateBookForm />} />
+            <Route path="/books/create" element={<CreateBookForm />} />
           </Routes>
         </div>
       </div>
