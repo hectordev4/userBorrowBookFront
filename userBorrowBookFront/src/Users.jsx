@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "./api";
 import { Card, CardContent, Typography, Grid, Paper } from "@mui/material";
+import { Box } from "@mui/system";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -18,11 +19,11 @@ const Users = () => {
     fetchUsers();
   }, []);
 
-  return (
-    <Paper style={{ padding: "16px" }}>
-      <Grid container spacing={2}>
+return (
+    <Paper sx={{ padding: "16px" }}>
+      <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
         {users.map((user) => (
-          <Grid item xs={12} sm={6} md={4} key={user.id}>
+          <Box gridColumn={{ xs: "span 12", sm: "span 6", md: "span 4" }} key={user.id}>
             <Card>
               <CardContent>
                 <Typography variant="h6" component="div">
@@ -36,11 +37,10 @@ const Users = () => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Box>
         ))}
-      </Grid>
+      </Box>
     </Paper>
   );
-};
-
+}
 export default Users;
