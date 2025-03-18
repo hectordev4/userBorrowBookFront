@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "./api";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from "@mui/material";
+import { Card, CardContent, Typography, Grid, Paper } from "@mui/material";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -27,26 +19,27 @@ const Users = () => {
   }, []);
 
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Age</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>{user.userAppName}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.age}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Paper style={{ padding: "16px" }}>
+      <Grid container spacing={2}>
+        {users.map((user) => (
+          <Grid item xs={12} sm={6} md={4} key={user.id}>
+            <Card>
+              <CardContent>
+                <Typography variant="h6" component="div">
+                  {user.userAppName}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Email: {user.email}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Age: {user.age}
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Paper>
   );
 };
 
