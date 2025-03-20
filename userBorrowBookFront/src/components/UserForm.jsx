@@ -1,36 +1,17 @@
-import React, { useState } from 'react';
-import axios from '../middleware/api';
+import React from 'react';
 import { Button, Paper, TextField } from '@mui/material';
 
+export default function UserForm({ formData, setFormData, handleSubmit }) {
+    // Handler to update form data
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
 
-//handler to submit form data
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-        const response = await axios.post("/users", formData);
-        //post form data to api
-        alert("User created successfully");
-        //show alert after successful post
-        navigate ("/users");
-        //redirect to users page
-    }
-    catch (error) {
-        console.error(error);
-    }
-};
-
-//handler to update form data: onChange
-const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-}
-
-
-export default function Form (){
     return (
         <>
-            <Paper sx={{padding: 2}}>
-                <form>
+            <Paper sx={{ padding: 2 }}>
+                <form onSubmit={handleSubmit}>
                     <TextField
                         label="Name"
                         name="name"
@@ -40,7 +21,7 @@ export default function Form (){
                         margin="normal"
                     />
                     <TextField
-                        label="Adress"
+                        label="Address"
                         name="adress"
                         value={formData.adress}
                         onChange={handleChange}
@@ -80,14 +61,14 @@ export default function Form (){
                         margin="normal"
                     />
                     <Button
+                        type="submit"
                         variant="contained"
                         color="primary"
-                        onClick={handleSubmit}
                     >
                         Update User
                     </Button>
                 </form>
             </Paper>
         </>
-    )
-};
+    );
+}
