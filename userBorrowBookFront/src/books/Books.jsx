@@ -31,8 +31,15 @@ const Books = () => {
     try {
       await axios.delete(`/books/${id}`);
       setBooks(books.filter((book) => book.id !== id));
+      alert("Book deleted successfully");
+      navigate("/books");
     } catch (error) {
       console.error("Error deleting book:", error);
+      if (error.response && error.response.data) {
+        alert(error.response.data);
+      } else {
+        alert("Failed to delete book. An error occurred.");
+      }
     }
   };
 
