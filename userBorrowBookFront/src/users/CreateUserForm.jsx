@@ -9,7 +9,7 @@ const CreateUserForm = () => {
   const navigate = useNavigate();
   // Form data state
   const [formData, setFormData] = useState({
-    name: "",
+    userAppName: "",
     email: "",
     password: "",
     age: 0,
@@ -43,8 +43,8 @@ const CreateUserForm = () => {
       <form onSubmit={handleSubmit}>
         <TextField
           label="Name"
-          name="name"
-          value={formData.name}
+          name="userAppName"
+          value={formData.userAppName}
           onChange={handleChange}
           fullWidth
           margin="normal"
