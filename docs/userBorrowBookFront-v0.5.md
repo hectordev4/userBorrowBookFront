@@ -4,7 +4,11 @@
 
 > The `Grid` component from Material-UI (MUI) is deprecated in newer versions. 
 
-So. the recommended alternative is to use the `Box` component with the new `Grid` system provided by MUI's `@mui/system` package.
+The recommended approach now involves utilizing the `Box` component in conjunction with the `sx` prop to achieve grid layouts. The `sx` prop allows you to apply CSS styles directly to the `Box` component, including grid-specific properties. 
+
+This new system offers greater customization and control over your layouts. 
+
+I's important to note that this import is now from the `@mui/material` package, not from `@mui/system` as it was in earlier versions
 
 - [MUI Box](https://mui.com/material-ui/react-box/)
 - [MUI Box SX Grid](https://mui.com/system/getting-started/the-sx-prop/#grid)
@@ -123,7 +127,6 @@ Each user's information is wrapped in a `Box` component that acts as a grid item
 
 ```jsx
 <Box gridColumn={{ xs: "span 12", sm: "span 6", md: "span 4" }} key={user.id}>
-
 ```
 
 This creates a responsive layout where:
@@ -150,7 +153,6 @@ The `Card` component is used to display each user's information:
     </Typography>
   </CardContent>
 </Card>
-
 ```
 
 - `Typography` components are used to style text content.
