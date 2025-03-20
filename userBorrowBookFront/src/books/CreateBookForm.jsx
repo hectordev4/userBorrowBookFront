@@ -1,44 +1,42 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "./api";
-import { TextField, Button, Paper, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import axios from "../middleware/api";
+import { TextField, Button, Paper } from "@mui/material";
 
-const UpdateBookForm = () => {
-  const location = useLocation();
+const CreateBookForm = () => {
   const navigate = useNavigate();
-  const book = location.state?.book || {}; // Get book data from state
 
   const [formData, setFormData] = useState({
-    title: book.title || "",
-    author: book.author || "",
-    isbn: book.isbn || "",
-    pagesQty: book.pagesQty || "",
-    available: book.available || false,
-    publicationDate: book.publicationDate || "",
+    title: "",
+    author: "",
+    isbn: "",
+    pagesQty: "",
+    available: true,
+    publicationDate: "",
   });
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `http://localhost:8080/api/v1/books/${book.id}`,
-        formData
-      );
-      alert("Book updated successfully!");
+      await axios.post("http://localhost:8080/api/v1/books", formData);
+      alert("Book created successfully!");
       navigate("/"); // Redirect back to the books list
     } catch (error) {
-      console.error("Error updating book:", error);
+      console.error("Error creating book:", error);
+      alert("Failed to create book.");
     }
   };
 
   return (
     <Paper style={{ padding: "20px", maxWidth: "500px", margin: "20px auto" }}>
-      <Typography variant="h5">Update Book</Typography>
+      <h2>Create New Book</h2>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Title"
@@ -47,6 +45,7 @@ const UpdateBookForm = () => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
         />
         <TextField
           label="Author"
@@ -55,6 +54,7 @@ const UpdateBookForm = () => {
           onChange={handleChange}
           fullWidth
           margin="normal"
+          required
         />
         <TextField
           label="ISBN"
@@ -83,11 +83,11 @@ const UpdateBookForm = () => {
           margin="normal"
         />
         <Button type="submit" variant="contained" color="primary">
-          Update Book
+          Create Book
         </Button>
       </form>
     </Paper>
   );
 };
 
-export default UpdateBookForm;
+export default CreateBookForm;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "./api";
+import axios from "../middleware/api";
 import {
   Table,
   TableBody,

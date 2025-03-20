@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import Home from "./Home";
-import Books from "./Books";
-import Users from "./Users";
+import Sidebar from "./layouts/Sidebar";
+import Home from "./pages/Home";
+import Books from "./books/Books";
+import Users from "./users/Users";
 import Borrows from "./Borrows";
-import UpdateBookForm from "./UpdateBookForm";
-import CreateBookForm from "./CreateBookForm";
+import UpdateBookForm from "./books/UpdateBookForm";
+import CreateBookForm from "./books/CreateBookForm";
+import CreateUserForm from "./users/CreateUserForm";
+import UpdateUserForm from "./users/UpdateUserForm";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
             <Route path="/borrows" element={<Borrows />} />
             <Route path="/books/update/:id" element={<UpdateBookForm />} />
             <Route path="/books/create" element={<CreateBookForm />} />
+            <Route path="/users/create" element={<CreateUserForm />} />
+            <Route path="/users/update/:id" element={<UpdateUserForm />} />
           </Routes>
         </div>
       </div>
