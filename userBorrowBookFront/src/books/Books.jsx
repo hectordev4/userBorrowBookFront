@@ -48,6 +48,11 @@ const Books = () => {
     navigate(`/books/update/${book.id}`, { state: { book } });
   };
 
+  // Redirect to detail component
+  const detailBook = (book) => {
+    navigate(`/books/detail/${book.id}`, { state: { book } });
+  };
+
   // Navigate to create book form
   const createBook = () => {
     navigate("/books/create");
@@ -89,6 +94,9 @@ const Books = () => {
                   </Button>
                   <Button color="secondary" onClick={() => deleteBook(book.id)}>
                     Delete
+                  </Button>
+                  <Button color="success" onClick={() => detailBook(book)}>
+                    Detail
                   </Button>
                 </TableCell>
               </TableRow>

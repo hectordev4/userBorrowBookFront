@@ -10,8 +10,7 @@ import CreateBookForm from "./books/CreateBookForm";
 import CreateUserForm from "./users/CreateUserForm";
 import UpdateUserForm from "./users/UpdateUserForm";
 import CreateBorrowForm from "./borrows/CreateBorrowForm";
-import _Borrows from "./borrows/_Borrows";
-import _CreateBorrowForm from "./borrows/_CreateBorrowForm";
+import DetailBook from "./books/DetailBook";
 
 const App = () => {
   return (
@@ -25,12 +24,11 @@ const App = () => {
             <Route path="/users" element={<Users />} />
             <Route path="/borrows" element={<Borrows />} />
             <Route path="/books/update/:id" element={<UpdateBookForm />} />
+            <Route path="/books/detail/:id" element={<DetailBook />} />
             <Route path="/books/create" element={<CreateBookForm />} />
             <Route path="/users/create" element={<CreateUserForm />} />
             <Route path="/users/update/:id" element={<UpdateUserForm />} />
             <Route path="/borrows/create" element={<CreateBorrowForm />} />
-            <Route path="/borrows2" element={<_Borrows />} />
-            <Route path="/borrows/create2" element={<_CreateBorrowForm />} />
           </Routes>
         </div>
       </div>
