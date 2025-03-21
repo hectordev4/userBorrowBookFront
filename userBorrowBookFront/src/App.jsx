@@ -9,6 +9,7 @@ import UpdateBookForm from "./books/UpdateBookForm";
 import CreateBookForm from "./books/CreateBookForm";
 import CreateUserForm from "./users/CreateUserForm";
 import UpdateUserForm from "./users/UpdateUserForm";
+import CreateBorrowForm from "./borrows/CreateBorrowForm";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/books/create" element={<CreateBookForm />} />
             <Route path="/users/create" element={<CreateUserForm />} />
             <Route path="/users/update/:id" element={<UpdateUserForm />} />
+            <Route path="/borrows/create" element={<CreateBorrowForm />} />
           </Routes>
         </div>
       </div>
