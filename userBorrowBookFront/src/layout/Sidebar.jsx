@@ -27,6 +27,7 @@ export default function Sidebar() {
     { text: "Books", icon: <BookIcon />, path: "/books" },
     { text: "Users", icon: <PersonIcon />, path: "/users" },
     { text: "Borrows", icon: <AssignmentIcon />, path: "/borrows" },
+    { text: "_Borrows", icon: <AssignmentIcon />, path: "/borrows2" },
   ];
 
   const DrawerList = (
