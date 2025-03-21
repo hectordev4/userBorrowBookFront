@@ -9,6 +9,7 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
+  Box
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -111,23 +112,25 @@ const CreateBorrowForm = () => {
             </Select>
           </FormControl>
 
-          <DatePicker
-            label="Borrow Date"
-            value={formData.borrowDate}
-            onChange={(newValue) => handleDateChange("borrowDate", newValue)}
-            renderInput={(params) => (
-              <TextField {...params} fullWidth margin="normal" />
-            )}
-          />
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <DatePicker
+              label="Borrow Date"
+              value={formData.borrowDate}
+              onChange={(newValue) => handleDateChange("borrowDate", newValue)}
+              renderInput={(params) => (
+                <TextField {...params} fullWidth margin="normal" />
+              )}
+            />
 
-          <DatePicker
-            label="Return Date"
-            value={formData.returnDate}
-            onChange={(newValue) => handleDateChange("returnDate", newValue)}
-            renderInput={(params) => (
-              <TextField {...params} fullWidth margin="normal" />
-            )}
-          />
+            <DatePicker
+              label="Return Date"
+              value={formData.returnDate}
+              onChange={(newValue) => handleDateChange("returnDate", newValue)}
+              renderInput={(params) => (
+                <TextField {...params} fullWidth margin="normal" />
+              )}
+            />
+          </Box>
 
           <TextField
             label="Points"
