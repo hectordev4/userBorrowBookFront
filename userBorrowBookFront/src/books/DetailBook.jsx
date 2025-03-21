@@ -21,14 +21,13 @@ async function getBookImageUrl(title) {
     if (data.items && data.items[0] && data.items[0].volumeInfo.imageLinks) {
       return data.items[0].volumeInfo.imageLinks.thumbnail;
     } else {
-      return `https://via.placeholder.com/128x192?text=${encodedTitle}`;
+      return `/public/book-cover-placeholder.png`;
     }
   } catch (error) {
     console.error("Error fetching book image:", error);
-    return `book-cover-placeholder.png`;
+    return `/public/book-cover-placeholder.png`;
   }
 }
-
 
 
 const DetailBook = () => {
