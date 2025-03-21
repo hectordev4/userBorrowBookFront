@@ -12,7 +12,7 @@ const Users = () => {
 //map users data
 //display users data in cards
 
-const [users, setUsers] = useState([]);
+const [user, setUsers] = useState([]);
 const navigate = useNavigate();
 
 const getUsers = async () => {
