@@ -25,9 +25,9 @@ const BookService = {
     }
   },
 
-  updateBook: async (book) => {
+  updateBook: async (bookId,book) => {
     try {
-      const response = await axios.put(`${API_BASE_URL}/books/${book.id}`, book);
+      const response = await axios.put(`${API_BASE_URL}/books/${bookId}`, book);
       return response.data;
     } catch (error) {
       console.error("Error updating book:", error);

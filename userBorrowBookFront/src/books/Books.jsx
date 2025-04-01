@@ -10,13 +10,15 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../middleware/api";
 import { useBookService } from "../middleware/bookService";
 
 
 const Books = () => {
+  // Custom hook to access the BookService
   const bookService = useBookService();
+  // State to hold the list of books
   const [books, setBooks] = useState([]);
+  // useNavigate hook to programmatically navigate
   const navigate = useNavigate();
 
   // Fetch all books
@@ -37,7 +39,7 @@ const Books = () => {
   // Delete a book by ID
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`/books/${id}`);
+      await bookService.deleteBook(id);
       setBooks(books.filter((book) => book.id !== id));
       alert("Book deleted successfully");
       navigate("/books");

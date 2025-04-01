@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "../middleware/api";
 import { TextField, Button, Paper } from "@mui/material";
+import { useBookService } from "../middleware/bookService";
 
 const CreateBookForm = () => {
+  // Custom hook to access the BookService
+  const bookService = useBookService();
   const navigate = useNavigate();
   // Form data state
   const [formData, setFormData] = useState({
@@ -25,7 +27,7 @@ const CreateBookForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/books", formData);
+      await bookService.createBook(formData);
       alert("Book created successfully!");
       navigate("/"); // Redirect back to the books list
     } catch (error) {

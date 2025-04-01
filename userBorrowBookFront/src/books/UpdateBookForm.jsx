@@ -1,10 +1,14 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "../middleware/api";
+import { useBookService } from "../middleware/bookService";
 
 const UpdateBookForm = () => {
+  // Custom hook to access the BookService
+  const bookService = useBookService();
+  // useLocation hook to access the current location
   const location = useLocation();
+  // useNavigate hook to programmatically navigate
   const navigate = useNavigate();
   const book = location.state?.book || {}; // Get book data from state
 
@@ -25,10 +29,7 @@ const UpdateBookForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `/books/${book.id}`,
-        formData
-      );
+      await bookService.updateBook(book.id, formData);
       alert("Book updated successfully!");
       navigate("/books"); // Redirect back to the books list
     } catch (error) {
