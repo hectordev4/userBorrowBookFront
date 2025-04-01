@@ -3,9 +3,12 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../middleware/api';
+import { useAppServices } from '../middleware/appServicesContext'; // Custom hook to access the BookService
+
 
 const CreateUserForm = () => {
+  // Custom hook to access the Service
+  const appService = useAppServices();
   const navigate = useNavigate();
   // Form data state
   const [formData, setFormData] = useState({
@@ -28,7 +31,7 @@ const CreateUserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/users", formData);
+      await appService.user.createUser(formData);
       alert("User created successfully!");
       navigate("/users"); // Redirect back to the users list
     } catch (error) {

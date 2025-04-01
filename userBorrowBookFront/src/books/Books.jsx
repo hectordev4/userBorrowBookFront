@@ -34,6 +34,10 @@ const Books = () => {
     }
 
     fetchBooks();
+    // useEffect will run sync with [appService] dependency
+    // we sync with appService because it is a custom hook
+    // and it will be created when the app starts
+    // and it will be used to fetch the data
   }, [appService]);
 
   // Delete a book by ID

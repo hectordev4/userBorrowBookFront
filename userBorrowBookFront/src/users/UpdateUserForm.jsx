@@ -9,14 +9,17 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
+import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the UserService
 
 const UpdateUserForm = () => {
+  // Custom hook to access the Service
+  const appService = useAppServices();
   const navigate = useNavigate();
   const location = useLocation();
   const user = location.state?.user || {};
 
   const [userForm, setUserForm] = useState({
-    name: user.userAppName || "",
+    userAppName: user.userAppName || "",
     email: user.email || "",
     password: user.password || "",
     age: user.age || 0,
@@ -38,7 +41,7 @@ const UpdateUserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`/users/${user.id}`, userForm);
+      await appService.user.updateUser(user.id, userForm);
       alert("User updated successfully!");
       navigate("/users"); // Redirect back to the users list
     } catch (error) {
@@ -53,8 +56,8 @@ const UpdateUserForm = () => {
       <form onSubmit={handleSubmit}>
         <TextField
           label="Name"
-          name="name"
-          value={userForm.name}
+          name="userAppName"
+          value={userForm.userAppName}
           onChange={handleChange}
           fullWidth
           margin="normal"
