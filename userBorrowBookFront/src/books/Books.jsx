@@ -11,20 +11,28 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../middleware/api";
+import { useBookService } from "../middleware/bookService";
+
 
 const Books = () => {
+  const bookService = useBookService();
   const [books, setBooks] = useState([]);
   const navigate = useNavigate();
 
   // Fetch all books
-  const fetchBooks = async () => {
-    try {
-      const response = await axios.get("/books");
-      setBooks(response.data);
-    } catch (error) {
-      console.error("Error fetching books:", error);
+  // Fetch books from API
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        const data = await bookService.getAllBooks();
+        setBooks(data);
+      } catch (error) {
+        console.error("Failed to fetch books:", error);
+      }
     }
-  };
+
+    fetchBooks();
+  }, [bookService]);
 
   // Delete a book by ID
   const deleteBook = async (id) => {
@@ -58,9 +66,7 @@ const Books = () => {
     navigate("/books/create");
   };
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+
 
   return (
     <div>
