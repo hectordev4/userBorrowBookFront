@@ -1,11 +1,11 @@
 import { Button, Paper, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useBookService } from "../middleware/bookService";
+import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the BookService
 
 const UpdateBookForm = () => {
-  // Custom hook to access the BookService
-  const bookService = useBookService();
+  // Custom hook to access the Service
+  const appService = useAppServices();
   // useLocation hook to access the current location
   const location = useLocation();
   // useNavigate hook to programmatically navigate
@@ -29,7 +29,7 @@ const UpdateBookForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await bookService.updateBook(book.id, formData);
+      await appService.book.updateBook(book.id, formData);
       alert("Book updated successfully!");
       navigate("/books"); // Redirect back to the books list
     } catch (error) {

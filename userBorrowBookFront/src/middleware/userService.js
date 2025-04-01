@@ -1,0 +1,63 @@
+import axios from "axios";
+
+const userService = {
+  getAllUsers: async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/users`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error retrieving users:", error);
+      throw error;
+    }
+  },
+  getUserById: async (id) => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error retrieving user:", error);
+      throw error;
+    }
+  },
+  createUser: async (user) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/users`,
+        user
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error creating user:", error);
+      throw error;
+    }
+  },
+  updateUser: async (id, user) => {
+    try {
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`,
+        user
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error updating user:", error);
+      throw error;
+    }
+  },
+  deleteUser: async (id) => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting user:", error);
+      throw error;
+    }
+  },
+};
+
+export default userService;

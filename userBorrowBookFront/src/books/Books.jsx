@@ -10,12 +10,12 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useBookService } from "../middleware/bookService";
+import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the BookService
 
 
 const Books = () => {
-  // Custom hook to access the BookService
-  const bookService = useBookService();
+  // Custom hook to access the Service
+  const appService = useAppServices();
   // State to hold the list of books
   const [books, setBooks] = useState([]);
   // useNavigate hook to programmatically navigate
@@ -26,7 +26,7 @@ const Books = () => {
   useEffect(() => {
     async function fetchBooks() {
       try {
-        const data = await bookService.getAllBooks();
+        const data = await appService.book.getAllBooks();
         setBooks(data);
       } catch (error) {
         console.error("Failed to fetch books:", error);
@@ -34,12 +34,12 @@ const Books = () => {
     }
 
     fetchBooks();
-  }, [bookService]);
+  }, [appService]);
 
   // Delete a book by ID
   const deleteBook = async (id) => {
     try {
-      await bookService.deleteBook(id);
+      await appService.book.deleteBook(id);
       setBooks(books.filter((book) => book.id !== id));
       alert("Book deleted successfully");
       navigate("/books");
