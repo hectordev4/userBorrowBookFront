@@ -10,38 +10,44 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "../middleware/api";
-import CreateBorrowForm from "./CreateBorrowForm";
+import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the BookService
 
 const Borrows = () => {
+  // Custom hook to access the Service
+  const appService = useAppServices();
+  // hook to manage state borrows
   const [borrows, setBorrows] = useState([]);
-  const navigate = useNavigate();
+  // hook to manage state books and users
   const [books, setBooks] = useState([]);
   const [users, setUsers] = useState([]);
+  // hooks to navigate to other pages
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBorrows = async () => {
       try {
-        const response = await axios.get("/borrows");
-        setBorrows(response.data);
+        const data = await appService.borrow.getAllBorrows();
+        setBorrows(data);
       } catch (error) {
         console.error("Error fetching borrows:", error);
       }
     };
 
+    // fetch books from app service
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("/books");
-        setBooks(response.data);
+        const data = await appService.book.getAllBooks();
+        setBooks(data);
       } catch (error) {
         console.error("Error fetching books:", error);
       }
     };
 
+    // Fetch users from app service
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("/users");
-        setUsers(response.data);
+        const data = await appService.user.getAllUsers();
+        setUsers(data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -50,7 +56,7 @@ const Borrows = () => {
     fetchBorrows();
     fetchBooks();
     fetchUsers();
-  }, []);
+  }, [appService]);
 
   const handleCreateBorrowClick = () => {
     navigate("/borrows/create", { state: { books, users } });
@@ -58,7 +64,7 @@ const Borrows = () => {
 
   const deleteBorrow = async (id) => {
     try {
-      await axios.delete(`/borrows/${id}`); // Replace with your API endpoint
+      await appService.borrow.deleteBorrow(id); // Replace with your API endpoint
       setBorrows(borrows.filter((borrow) => borrow.id !== id)); // Update state to remove deleted borrow
       alert("Borrow deleted successfully");
     } catch (error) {

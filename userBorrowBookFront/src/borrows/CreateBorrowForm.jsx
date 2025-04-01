@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import axios from "../middleware/api";
 import {
   TextField,
   Button,
@@ -15,8 +14,11 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import dayjs from "dayjs";
+import {useAppServices} from "../middleware/appServicesContext"; // Custom hook to access the BookService
 
 const CreateBorrowForm = () => {
+  // Custom hook to access the Service
+  const appService = useAppServices();
   const navigate = useNavigate();
   const location = useLocation();
   const { books, users } = location.state || {}; // Get books and users from state
@@ -56,7 +58,7 @@ const CreateBorrowForm = () => {
         points: formData.points,
       };
 
-      await axios.post("/borrows", borrowData); // Replace with your API endpoint
+      await appService.borrow.createBorrow(borrowData); // Replace with your API endpoint
       alert("Borrow created successfully!");
       navigate("/borrows"); // Redirect back to the borrows list
     } catch (error) {
