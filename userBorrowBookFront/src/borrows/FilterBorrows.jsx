@@ -44,7 +44,7 @@ const FilterBorrows = () => {
         Object.entries(filters).filter(([_, v]) => v !== "")
       );
 
-      const response = await axios.get("http://localhost:8080/api/borrows", {
+      const response = await axios.get("http://localhost:8080/api/v1/borrows/filter", {
         params,
         headers: { Accept: "application/json" },
         validateStatus: (status) => status < 500, // Accept client-side errors without throwing
@@ -78,6 +78,7 @@ const FilterBorrows = () => {
   return (
     <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
       {/* Filters Section */}
+      <h3>Filter borrows</h3>
       <div
         style={{
           display: "grid",
