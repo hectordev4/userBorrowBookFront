@@ -11,6 +11,7 @@ import CreateUserForm from "./users/CreateUserForm";
 import UpdateUserForm from "./users/UpdateUserForm";
 import CreateBorrowForm from "./borrows/CreateBorrowForm";
 import DetailBook from "./books/DetailBook";
+import FilterBorrows from "./borrows/FilterBorrows";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
             <Route path="/users/create" element={<CreateUserForm />} />
             <Route path="/users/update/:id" element={<UpdateUserForm />} />
             <Route path="/borrows/create" element={<CreateBorrowForm />} />
+            <Route path="/borrows/filter" element={<FilterBorrows />} />
           </Routes>
         </div>
       </div>
