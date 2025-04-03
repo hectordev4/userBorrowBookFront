@@ -12,6 +12,7 @@ import UpdateUserForm from "./users/UpdateUserForm";
 import CreateBorrowForm from "./borrows/CreateBorrowForm";
 import DetailBook from "./books/DetailBook";
 import FilterBorrows from "./borrows/FilterBorrows";
+import PaginatedBooks from "./books/PaginatedBooks";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
             <Route path="/books/update/:id" element={<UpdateBookForm />} />
             <Route path="/books/detail/:id" element={<DetailBook />} />
             <Route path="/books/create" element={<CreateBookForm />} />
+            <Route path="/books/paginated" element={<PaginatedBooks />} />
             <Route path="/users/create" element={<CreateUserForm />} />
             <Route path="/users/update/:id" element={<UpdateUserForm />} />
             <Route path="/borrows/create" element={<CreateBorrowForm />} />

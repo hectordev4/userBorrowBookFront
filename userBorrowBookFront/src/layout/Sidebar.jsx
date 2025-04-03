@@ -25,6 +25,7 @@ export default function Sidebar() {
   const menuItems = [
     { text: "Home", icon: <HomeIcon />, path: "/" },
     { text: "Books", icon: <BookIcon />, path: "/books" },
+    { text: "Paginated Books", icon: <BookIcon />, path: "/books/paginated" },
     { text: "Users", icon: <PersonIcon />, path: "/users" },
     { text: "Borrows", icon: <AssignmentIcon />, path: "/borrows" },
     { text: "Filter Borrows", icon: <AssignmentIcon />, path: "/borrows/filter" }
