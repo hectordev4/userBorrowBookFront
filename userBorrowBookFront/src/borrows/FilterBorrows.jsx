@@ -17,6 +17,7 @@ import { useAppServices } from "../middleware/appServicesContext"; // Custom hoo
 
 
 const FilterBorrows = () => {
+  // State to hold the filter values
   const [filters, setFilters] = useState({
     bookTitle: "",
     isbn: "",
@@ -26,12 +27,12 @@ const FilterBorrows = () => {
     dob: "",
     returned: "",
   });
-
+  // State to hold the filtered borrows
   const [filteredBorrows, setFilteredBorrows] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-    const appService = useAppServices();
+  // Custom hook to access the app services
+  const appService = useAppServices();
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -139,7 +140,6 @@ const FilterBorrows = () => {
           <MenuItem value="false">No</MenuItem>
         </TextField>
       </div>
-
       {/* Apply Filters Button */}
       <Button
         variant="contained"
@@ -150,15 +150,17 @@ const FilterBorrows = () => {
       >
         {loading ? <CircularProgress size={24} /> : "Apply Filters"}
       </Button>
-
       {/* Error Message */}
       {error && (
         <Typography color="error" style={{ marginBottom: "20px" }}>
           Error: {error}
         </Typography>
       )}
-
       {/* Results Table */}
+      <br />
+      <Typography color="success" style={{ marginBottom: "20px" }}>
+        There are {filteredBorrows.length} results.
+      </Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -175,8 +177,13 @@ const FilterBorrows = () => {
               ? filteredBorrows.map((borrow) => (
                   <TableRow key={borrow.id}>
                     <TableCell>{borrow.id}</TableCell>
-                    <TableCell>{borrow.book?.title}</TableCell>
-                    <TableCell>{borrow.user?.userAppName}</TableCell>
+                    <TableCell>
+                      {borrow.book?.title} by {borrow.book?.author}
+                    </TableCell>
+                    <TableCell>
+                      {borrow.user?.userAppName} ({borrow.user?.age})
+                      [{borrow.user?.archived ? "Archived" : "Active"}]
+                    </TableCell>
                     <TableCell>
                       {new Date(borrow.borrowDate).toLocaleDateString()}
                     </TableCell>
