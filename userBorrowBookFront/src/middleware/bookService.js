@@ -47,6 +47,17 @@ const bookService = {
       throw error;
     }
   },
+  getPaginatedBooks: async (currentPage) => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/books/page/${currentPage}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error retrieving paginated books:", error);
+      throw error;
+    }
+  },
 };
 
 export default bookService;

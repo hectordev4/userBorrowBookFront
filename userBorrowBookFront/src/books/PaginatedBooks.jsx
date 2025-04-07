@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useAppServices } from "../middleware/appServicesContext"; // Custom hook
 
 const PaginatedBooks = () => {
   const [books, setBooks] = useState([]);
@@ -23,17 +23,16 @@ const PaginatedBooks = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const appService = useAppServices();
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(
-          `http://localhost:8080/api/v1/books/page/${currentPage}`
-        );
+        const response = await appService.book.getPaginatedBooks(currentPage);
 
-        setBooks(response.data.content);
-        setTotalPages(response.data.totalPages);
+        setBooks(response.content);
+        setTotalPages(response.totalPages);
         setError(null);
       } catch (error) {
         console.error("Failed to fetch books:", error);
@@ -45,7 +44,7 @@ const PaginatedBooks = () => {
     };
 
     fetchBooks();
-  }, [currentPage]);
+  }, [currentPage, appService.book]);
 
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
@@ -53,7 +52,7 @@ const PaginatedBooks = () => {
 
   const deleteBook = async (id) => {
     try {
-      await axios.delete(`http://localhost:8080/api/v1/books/${id}`);
+      await appService.book.deleteBook(id);
       setBooks(books.filter((book) => book.id !== id));
     } catch (error) {
       console.error("Error deleting book:", error);
@@ -61,6 +60,7 @@ const PaginatedBooks = () => {
     }
   };
 
+  // Keep the rest of your methods unchanged
   const updateBook = (book) => {
     navigate(`/books/update/${book.id}`, { state: { book } });
   };
