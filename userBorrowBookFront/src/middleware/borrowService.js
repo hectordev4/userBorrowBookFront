@@ -58,6 +58,38 @@ const borrowService = {
       throw error;
     }
   },
+  filterBorrows: async (filters) => {
+    try {
+      const params = Object.fromEntries(
+        Object.entries(filters).filter(([_, v]) => v !== "")
+      );
+
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/borrows/filter`,
+        { params, headers: { Accept: "application/json" } }
+      );
+
+      // Validate HTML responses
+      if (
+        typeof response.data === "string" &&
+        response.data.startsWith("<!DOCTYPE")
+      ) {
+        throw new Error(
+          "Received HTML instead of JSON. Check API endpoint configuration."
+        );
+      }
+
+      // Validate array response
+      if (!Array.isArray(response.data)) {
+        throw new Error("Invalid API response format");
+      }
+
+      return response.data;
+    } catch (error) {
+      console.error("Error filtering borrows:", error);
+      throw error;
+    }
+  },
 };
 
 export default borrowService;

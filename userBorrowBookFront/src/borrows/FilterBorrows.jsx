@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import {
   Button,
-  TextField,
+  CircularProgress,
   MenuItem,
   Paper,
   Table,
@@ -10,10 +9,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Typography,
-  CircularProgress,
 } from "@mui/material";
-import axios from "axios";
+import React, { useState } from "react";
+import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the BookService
+
 
 const FilterBorrows = () => {
   const [filters, setFilters] = useState({
@@ -30,6 +31,8 @@ const FilterBorrows = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+    const appService = useAppServices();
+
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
@@ -40,32 +43,8 @@ const FilterBorrows = () => {
     setError(null);
 
     try {
-      const params = Object.fromEntries(
-        Object.entries(filters).filter(([_, v]) => v !== "")
-      );
-
-      const response = await axios.get("http://localhost:8080/api/v1/borrows/filter", {
-        params,
-        headers: { Accept: "application/json" },
-        validateStatus: (status) => status < 500, // Accept client-side errors without throwing
-      });
-
-      // Check for HTML responses
-      if (
-        typeof response.data === "string" &&
-        response.data.startsWith("<!DOCTYPE")
-      ) {
-        throw new Error(
-          "Received HTML instead of JSON. Check API endpoint configuration."
-        );
-      }
-
-      // Validate array response
-      if (!Array.isArray(response.data)) {
-        throw new Error("Invalid API response format");
-      }
-
-      setFilteredBorrows(response.data);
+      const data = await appService.borrow.filterBorrows(filters);
+      setFilteredBorrows(data);
     } catch (error) {
       console.error("Filter error:", error);
       setError(error.message || "Failed to fetch data");
@@ -196,13 +175,8 @@ const FilterBorrows = () => {
               ? filteredBorrows.map((borrow) => (
                   <TableRow key={borrow.id}>
                     <TableCell>{borrow.id}</TableCell>
-                    <TableCell>
-                      {borrow.book?.title} by {borrow.book?.author}
-                    </TableCell>
-                    <TableCell>
-                      {borrow.user?.userAppName} ({borrow.user?.age}) [
-                      {borrow.user?.archived ? "Archived" : "Active"}]
-                    </TableCell>
+                    <TableCell>{borrow.book?.title}</TableCell>
+                    <TableCell>{borrow.user?.userAppName}</TableCell>
                     <TableCell>
                       {new Date(borrow.borrowDate).toLocaleDateString()}
                     </TableCell>
