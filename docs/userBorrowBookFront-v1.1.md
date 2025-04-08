@@ -97,7 +97,9 @@ Key Methods:
    - `detailBook`: Navigates to the details page for a selected book.
    - `createBook`: Navigates to the form for creating a new book.
 
-## **UI Components**
+## UI Pagination
+
+### Components
 
 1. **Table**:
    Displays book details such as title, author, ISBN, page count, and availability status in rows.
@@ -119,6 +121,34 @@ Key Methods:
    
    - A `CircularProgress` spinner is shown while data is loading.
    - An error message is displayed if there is an issue fetching or deleting data.
+
+### Nested Stack-Pagination
+
+The `<Pagination>` component is nested inside a `<Stack>` component for the following reasons:
+
+* **Layout Control:** The `<Stack>` component from Material-UI provides a simple way to manage the layout of its children. In this case, it's used to center the pagination component and add spacing around it. 
+  
+  The `alignItems: "center"` style horizontally centers the pagination within the stack. The `marginTop: "20px"` style adds space between the table and the pagination controls.
+  
+  ```jsx
+  <Stack
+      spacing={2}
+      style={{ marginTop: "20px", alignItems: "center" }}
+  >
+      <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+          showFirstButton
+          showLastButton
+      />
+  </Stack>
+  ```
+
+* **Spacing:** The `spacing={2}` prop on the `<Stack>` component could be used to add spacing between multiple elements if more elements were added to the stack (though it's not directly relevant with only one child element).
+
+> The `<Stack>` component is used as a layout utility to control the positioning and spacing of the `<Pagination>` component, making it visually appealing and consistent with the rest of the UI.
 
 ## Code
 
