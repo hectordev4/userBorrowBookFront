@@ -3,9 +3,7 @@ import axios from "./api.js";
 const bookService = {
   getAllBooks: async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/books`
-      );
+      const response = await axios.get(`/books`);
       return response.data;
     } catch (error) {
       console.error("Error retrieving books:", error);
@@ -15,7 +13,7 @@ const bookService = {
   createBook: async (book) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/books`,
+        `/books`,
         book
       );
       return response.data;
@@ -27,7 +25,7 @@ const bookService = {
   updateBook: async (bookId, book) => {
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/books/${bookId}`,
+        `/books/${bookId}`,
         book
       );
       return response.data;
@@ -39,7 +37,7 @@ const bookService = {
   deleteBook: async (bookId) => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_API_BASE_URL}/books/${bookId}`
+        `/books/${bookId}`
       );
       return response.data;
     } catch (error) {
@@ -50,7 +48,7 @@ const bookService = {
   getPaginatedBooks: async (currentPage) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/books/page/${currentPage}`
+        `/books/page/${currentPage}`
       );
       return response.data;
     } catch (error) {
