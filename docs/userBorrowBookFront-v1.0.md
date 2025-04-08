@@ -3,9 +3,7 @@
 ## Intro and links
 
 - [GitHub - AlbertProfe/userBorrowBookFront at b770061](https://github.com/AlbertProfe/userBorrowBookFront/tree/b77006169c22ae0d0d50f64bbd140a91d92b4221)
-
 - [FilterBorrows.jsx at b770061](https://github.com/AlbertProfe/userBorrowBookFront/blob/b77006169c22ae0d0d50f64bbd140a91d92b4221/userBorrowBookFront/src/borrows/FilterBorrows.jsx)
-
 - [borrowService.js at b770061](https://github.com/AlbertProfe/userBorrowBookFront/blob/b77006169c22ae0d0d50f64bbd140a91d92b4221/userBorrowBookFront/src/middleware/borrowService.js)
 
 > This new feature **v1.0** provides a comprehensive interface for <mark>filtering</mark> and <mark>displaying</mark> book borrowing records.
@@ -60,8 +58,6 @@ It features multiple filter options, a responsive grid layout, loading state wit
 5. **Tabular display** of filtered results with proper formatting
 
 6. **Empty state handling** when no matches are found
-
-
 
 > The component presents a set of interactive filter inputs arranged in a responsive grid. These include text inputs for searching by book title or ISBN, a numeric input for filtering by user's age, a date picker for filtering by user's date of birth, and dropdown selectors for boolean filters like Available, Archived, and Returned status.
 
@@ -124,6 +120,7 @@ const params = Object.fromEntries(
 1. **`Object.entries(filters)`**:
    
    - Converts the `filters` object into an array of key-value pairs.
+   
    - Example: If `filters` is `{ bookTitle: "React", isbn: "", userAge: "25" }`, this will produce:
      
      ```javascript
@@ -137,7 +134,9 @@ const params = Object.fromEntries(
 2. **`.filter(([_, v]) => v !== "")`**:
    
    - Filters out entries where the value (`v`) is an empty string (`""`).
+   
    - This ensures only non-empty filters are included in the final API request.
+   
    - Example: After filtering, the result would be:
      
      ```javascript
@@ -150,6 +149,7 @@ const params = Object.fromEntries(
 3. **`Object.fromEntries()`**:
    
    - Converts the filtered array of key-value pairs back into an object.
+   
    - Example: The result becomes:
      
      ```javascript
@@ -158,8 +158,6 @@ const params = Object.fromEntries(
        userAge: "25"
      }
      ```
-
-
 
 > The `params` object is used to send query parameters in the API request to filter borrowing records. By excluding empty filters, the API receives only relevant criteria, avoiding unnecessary or invalid parameters.
 
@@ -173,8 +171,6 @@ For example, if a user fills out only the `bookTitle` and `userAge` fields in th
 ```
 
 This makes the request efficient and ensures that only meaningful filters are applied.
-
-
 
 ### **Benefits of This Approach**
 
@@ -193,8 +189,6 @@ This makes the request efficient and ensures that only meaningful filters are ap
 4. **Improved Backend Querying**:
    
    - By sending precise parameters, the backend can efficiently process requests and return accurate results.
-
-
 
 ### Example Workflow
 
