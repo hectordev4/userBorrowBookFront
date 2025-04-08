@@ -8,8 +8,6 @@ The approach decouples services, centralizes configuration via environment varia
 
 > This approach we are implemening that combining domain services into one context can reduce <mark>"context hell" (nested providers</mark>), making our app cleaner, especially as it grows with more services.
 
-
-
 - **Project Structure**
 
 ```bash
@@ -284,7 +282,7 @@ This approach, inspired by React context examples for multiple services [Use Mul
 
 ##### 6. Update Context with `AppServicesContext`
 
-Replace the existing `BookServiceContext` with a new context that uses the combined `Services` object. Create `appServicesContext.js`:
+Replace the existing `BookServiceContext` with a new context that uses the combined `Services` object. Create `appServicesContext.jsx`:
 
 ```javascript
 import React, { createContext, useContext } from 'react';
@@ -352,8 +350,6 @@ This table highlights the transition from a single-service context to a more sca
 #### Conclusion
 
 This implementation decouples services, uses environment variables for configuration, and combines them into a single context for easy access, aligning with React best practices for large-scale applications. It ensures maintainability, security, and scalability, suitable for managing books, users, and borrows in a library system.
-
-
 
 ### Key Citations
 
