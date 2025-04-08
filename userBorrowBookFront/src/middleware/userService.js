@@ -1,11 +1,9 @@
-import axios from "axios";
+import axios from "./api.js";
 
 const userService = {
   getAllUsers: async () => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/users`
-      );
+      const response = await axios.get("/users");
       return response.data;
     } catch (error) {
       console.error("Error retrieving users:", error);
@@ -14,9 +12,7 @@ const userService = {
   },
   getUserById: async (id) => {
     try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
-      );
+      const response = await axios.get(`/users/${id}`);
       return response.data;
     } catch (error) {
       console.error("Error retrieving user:", error);
@@ -25,10 +21,7 @@ const userService = {
   },
   createUser: async (user) => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/users`,
-        user
-      );
+      const response = await axios.post("/users", user);
       return response.data;
     } catch (error) {
       console.error("Error creating user:", error);
@@ -37,10 +30,7 @@ const userService = {
   },
   updateUser: async (id, user) => {
     try {
-      const response = await axios.put(
-        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`,
-        user
-      );
+      const response = await axios.put(`/users/${id}`, user);
       return response.data;
     } catch (error) {
       console.error("Error updating user:", error);
@@ -49,9 +39,7 @@ const userService = {
   },
   deleteUser: async (id) => {
     try {
-      const response = await axios.delete(
-        `${import.meta.env.VITE_API_BASE_URL}/users/${id}`
-      );
+      const response = await axios.delete(`/users/${id}`);
       return response.data;
     } catch (error) {
       console.error("Error deleting user:", error);

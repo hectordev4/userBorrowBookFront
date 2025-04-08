@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./api.js";
 
 const bookService = {
   getAllBooks: async () => {
