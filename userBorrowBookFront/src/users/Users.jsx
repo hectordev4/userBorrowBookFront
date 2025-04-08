@@ -61,9 +61,10 @@ const Users = () => {
 
 return (
   <Paper sx={{ padding: "16px" }}>
-    <Button variant="contained" onClick={createUser}>
+    <Button variant="outlined" onClick={createUser}>
       Create new User
     </Button>
+    <br /> <br />
     <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
       {users.map((user) => (
         <Box

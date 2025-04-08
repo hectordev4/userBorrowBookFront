@@ -74,9 +74,10 @@ const PaginatedBooks = () => {
   };
 
   return (
-    <div>
+    <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
+      <h3>Books Paginated</h3>
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
         onClick={createBook}
         style={{ marginBottom: "20px" }}
@@ -148,13 +149,14 @@ const PaginatedBooks = () => {
               page={currentPage}
               onChange={handlePageChange}
               color="primary"
+              variant="outlined"
               showFirstButton
               showLastButton
             />
           </Stack>
         </>
       )}
-    </div>
+    </Paper>
   );
 };
 

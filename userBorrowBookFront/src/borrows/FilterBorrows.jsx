@@ -142,7 +142,7 @@ const FilterBorrows = () => {
       </div>
       {/* Apply Filters Button */}
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
         onClick={applyFilters}
         disabled={loading}
@@ -181,8 +181,8 @@ const FilterBorrows = () => {
                       {borrow.book?.title} by {borrow.book?.author}
                     </TableCell>
                     <TableCell>
-                      {borrow.user?.userAppName} ({borrow.user?.age})
-                      [{borrow.user?.archived ? "Archived" : "Active"}]
+                      {borrow.user?.userAppName} ({borrow.user?.age}) [
+                      {borrow.user?.archived ? "Archived" : "Active"}]
                     </TableCell>
                     <TableCell>
                       {new Date(borrow.borrowDate).toLocaleDateString()}

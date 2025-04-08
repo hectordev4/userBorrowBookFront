@@ -84,7 +84,7 @@ const CreateBookForm = () => {
           fullWidth
           margin="normal"
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="outlined" color="primary">
           Create Book
         </Button>
       </form>

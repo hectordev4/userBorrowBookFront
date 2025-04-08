@@ -83,7 +83,7 @@ const UpdateBookForm = () => {
           fullWidth
           margin="normal"
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="outlined" color="primary">
           Update Book
         </Button>
       </form>

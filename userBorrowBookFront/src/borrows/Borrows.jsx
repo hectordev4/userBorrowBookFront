@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -7,9 +7,9 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Button,
 } from "@mui/material";
-import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the BookService
 
 const Borrows = () => {
@@ -74,9 +74,10 @@ const Borrows = () => {
   };
 
   return (
-    <div>
+    <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
+      <h3>Borrows List</h3>
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
         onClick={handleCreateBorrowClick}
         style={{ marginBottom: "20px" }}
@@ -126,7 +127,7 @@ const Borrows = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Paper>
   );
 };
 

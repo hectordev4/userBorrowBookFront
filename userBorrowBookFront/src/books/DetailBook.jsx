@@ -82,7 +82,7 @@ const DetailBook = () => {
       </CardContent>
       {/* Back Button */}
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
         style={{ margin: "10px" }}
         onClick={handleBackClick}

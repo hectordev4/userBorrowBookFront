@@ -75,9 +75,10 @@ const Books = () => {
 
 
   return (
-    <div>
+    <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
+      <h3>Books List</h3>
       <Button
-        variant="contained"
+        variant="outlined"
         color="primary"
         onClick={createBook}
         style={{ marginBottom: "20px" }}
@@ -116,7 +117,7 @@ const Books = () => {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </Paper>
   );
 };
 
