@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +43,7 @@ const CreateUserForm = () => {
 
   return (
     <Paper style={{ padding: "20px", maxWidth: "500px", margin: "20px auto" }}>
-      <h2>Create New User</h2>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>Create New User</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Name"

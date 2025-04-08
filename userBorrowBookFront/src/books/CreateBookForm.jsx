@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button, Paper } from "@mui/material";
+import { TextField, Button, Paper, Typography } from "@mui/material";
 import { useAppServices } from "../middleware/appServicesContext"; // Custom hook to access the BookService
 
 const CreateBookForm = () => {
@@ -38,7 +38,7 @@ const CreateBookForm = () => {
 
   return (
     <Paper style={{ padding: "20px", maxWidth: "500px", margin: "20px auto" }}>
-      <h2>Create New Book</h2>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>Create New Book</Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Title"

@@ -8,7 +8,8 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  Box
+  Box,
+  Typography
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -76,7 +77,7 @@ const CreateBorrowForm = () => {
       <Paper
         style={{ padding: "20px", maxWidth: "500px", margin: "20px auto" }}
       >
-        <h2>Create New Borrow</h2>
+        <Typography variant="h4" sx={{ marginBottom: 2 }}>Create new Borrow</Typography>
         <form onSubmit={handleSubmit}>
           <FormControl fullWidth margin="normal" required>
             <InputLabel id="book-select-label">Book</InputLabel>

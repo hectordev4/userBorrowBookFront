@@ -75,7 +75,7 @@ const PaginatedBooks = () => {
 
   return (
     <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
-      <h3>Books Paginated</h3>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>Books Paginated</Typography>
       <Button
         variant="outlined"
         color="primary"

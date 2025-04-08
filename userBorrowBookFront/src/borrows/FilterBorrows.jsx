@@ -58,7 +58,7 @@ const FilterBorrows = () => {
   return (
     <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
       {/* Filters Section */}
-      <h3>Filter borrows</h3>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>Filter Borrows</Typography>
       <div
         style={{
           display: "grid",

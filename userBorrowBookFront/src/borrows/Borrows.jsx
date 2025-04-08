@@ -7,6 +7,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Typography
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -75,7 +76,9 @@ const Borrows = () => {
 
   return (
     <Paper elevation={3} style={{ padding: "20px", margin: "20px" }}>
-      <h3>Borrows List</h3>
+      <Typography variant="h4" sx={{ marginBottom: 2 }}>
+        Borrows List
+      </Typography>
       <Button
         variant="outlined"
         color="primary"
